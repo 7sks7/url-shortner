@@ -2,9 +2,9 @@ name: Java Gradle CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -25,5 +25,3 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
-
-#add new features
