@@ -1,2 +1,4 @@
-1. Create pipeline
-2. Optimize code logic
+1. Explore more on pipeline and add required stages
+2. Create two envs as prod and dev
+3. Add confidential values related to db in a .env file
+4. Optimize code logic
