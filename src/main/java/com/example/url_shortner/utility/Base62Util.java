@@ -7,7 +7,7 @@ public class Base62Util {
         StringBuilder stringBuilder = new StringBuilder();
 
         while (value > 0){
-            stringBuilder.append((int) (value%62));
+            stringBuilder.append(BASE62.charAt((int) (value % 62)));
             value /= 62;
         }
         return stringBuilder.reverse().toString();
