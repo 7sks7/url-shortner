@@ -7,7 +7,6 @@ import com.example.url_shortner.repository.UrlRepository;
 import com.example.url_shortner.service.UrlService;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
 
 import static com.example.url_shortner.utility.UrlEncoder.generateCode;
 
@@ -28,7 +27,7 @@ public class UrlServiceImpl implements UrlService {
         urlRepository.save(url);
 
         return UrlResponseDTO.builder()
-                .shortUrl("http://localhost:8080/" + code)
+                .shortUrl("http://localhost:8081/" + code)
                 .build();
     }
 

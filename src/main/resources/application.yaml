@@ -4,22 +4,6 @@ spring:
   profiles:
     active: dev
 
-  data:
-    mongodb:
-      uri: spring.data.mongodb.uri=mongodb+srv://${MONGO_USER}:${MONGO_PASS}@url-cluster.n3z2nfj.mongodb.net/url-shortner-db?retryWrites=true&w=majority
-      database: url-shortner-db
-      auto-index-creation: true
-
-  redis:
-    host: localhost
-    port: 6379
-
-    lettuce:
-      pool:
-        max-active: 10
-        max-idle: 5
-        min-idle: 1
-
 logging:
   level:
     org.springframework.data.mongodb: DEBUG
