@@ -9,10 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @RestController
+@RequestMapping("/api/v1")
 @Slf4j
 public class UrlController {
 
@@ -24,13 +23,20 @@ public class UrlController {
 
     @PostMapping("/shorten")
     public ResponseEntity<UrlResponseDTO> shorten(@Valid @RequestBody UrlRequestDTO urlRequest){
+        long startTime = System.currentTimeMillis();
         UrlResponseDTO urlResponseDTO = urlService.shortenUrl(urlRequest);
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Time taken to post URL for code {}: {} ms", urlResponseDTO, duration);
         return ResponseEntity.status(HttpStatus.CREATED).body(urlResponseDTO);
     }
 
     @GetMapping("/get-url/{code}")
     public ResponseEntity<String> redirect(@PathVariable String code) {
+        long startTime = System.currentTimeMillis();
         String originalUrl = urlService.getOriginalUrl(code);
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Time taken to fetch URL for code {}: {} ms", code, duration);
+
         return ResponseEntity.ok(originalUrl);
     }
 }
