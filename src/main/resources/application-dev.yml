@@ -4,8 +4,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27017/urlshortener
-      database: url-shortner-db
+      uri: mongodb://localhost:27017/url-shortner-db
       auto-index-creation: true
 
   redis:

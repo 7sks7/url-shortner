@@ -1,5 +1,5 @@
 1. Explore more on pipeline and add required stages
-2. Host prod in aws using ec2 and access dev in local
+2. Check mongo db issue and ec2 startup issue
 3. Optimize code logic
 4. Start building frontend
 5. User login
