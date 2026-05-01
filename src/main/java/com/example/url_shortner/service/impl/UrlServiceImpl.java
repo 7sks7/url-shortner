@@ -81,9 +81,16 @@ public class UrlServiceImpl implements UrlService {
 
     @Override
     public String getOriginalUrl(String code) {
+
         return urlRepository.findByShortCode(code)
-                .map(Url::getOriginalUrl)
-                .orElseThrow(() -> new UrlNotFoundException("URL not found for code: " + code));
+                .map(url -> {
+                    log.info("Found original URL for code: {}", code);
+                    return url.getOriginalUrl();
+                })
+                .orElseThrow(() -> {
+                    log.error("URL not found for code: {}", code);
+                    return new UrlNotFoundException("URL not found for code: " + code);
+                });
     }
 
     private String normalizeUrl(String url) {
