@@ -2,6 +2,9 @@ spring:
   application:
     name: url-shortner
 
+app:
+  base-url: https://new-ly/
+
   data:
     mongodb:
       uri: mongodb://localhost:27017/url-shortner-db

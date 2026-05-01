@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.net.URI;
 
 
 @RestController
@@ -31,12 +32,28 @@ public class UrlController {
     }
 
     @GetMapping("/get-url/{code}")
-    public ResponseEntity<String> redirect(@PathVariable String code) {
+    public ResponseEntity<UrlResponseDTO> getUrl(@PathVariable String code) {
         long startTime = System.currentTimeMillis();
         String originalUrl = urlService.getOriginalUrl(code);
         long duration = System.currentTimeMillis() - startTime;
         log.info("Time taken to fetch URL for code {}: {} ms", code, duration);
 
-        return ResponseEntity.ok(originalUrl);
+        return ResponseEntity.ok(
+                UrlResponseDTO.builder()
+                        .shortUrl(originalUrl)
+                        .build()
+        );
+    }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<Void> redirect(@PathVariable String code) {
+        long startTime = System.currentTimeMillis();
+        String originalUrl = urlService.getOriginalUrl(code);
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Time taken to fetch URL for code {}: {} ms", code, duration);
+
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .location(URI.create(originalUrl))
+                .build();
     }
 }

@@ -21,3 +21,6 @@ logging:
 
 server:
   port: 8081
+
+app:
+  base-url: https://new-ly/
